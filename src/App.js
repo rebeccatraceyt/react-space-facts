@@ -4,6 +4,7 @@ import SpaceFactCard from "./components/SpaceFactCard";
 import NavBar from "./components/NavBar";
 import AddFactForm from "./components/AddFactForm";
 import mockApi from "./api/mockApi";
+import PlanetList from "./components/PlanetList";
 
 const App = () => {
   const [facts, setFacts] = useState([
@@ -15,44 +16,71 @@ const App = () => {
     },
   ]);
 
-  const addFact = (newFact) => {
-    const updatedFacts = [...facts, newFact];
-    setFacts(updatedFacts);
-    mockApi.saveFacts(updatedFacts);
-  };
-
-  const deleteFact = (index) => {
-    const updatedFacts = facts.filter((_, i) => i !== index);
-    setFacts(updatedFacts);
-    mockApi.saveFacts(updatedFacts);
-  };
-
-  const filteredFacts = facts.filter((fact) => fact.title.toLowerCase());
-
-  return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <div className="facts">
-                {filteredFacts.map((fact, index) => (
-                  <SpaceFactCard
-                    key={index}
-                    {...fact}
-                    onDelete={() => deleteFact(index)}
-                  />
-                ))}
+  const [planets] = useState([
+      {
+        name: "Mercury",
+        image: "https://www.solarsystemscope.com/textures/download/2k_mercury.jpg",
+        feature: "Smallest planet in the solar system.",
+      },
+      {
+        name: "Venus",
+        image: "https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg",
+        feature: "Hottest planet due to its thick atmosphere.",
+      },
+      {
+        name: "Earth",
+        image: "https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg",
+        feature: "The only planet known to support life.",
+      },
+      {
+        name: "Mars",
+        image: "https://www.solarsystemscope.com/textures/download/2k_mars.jpg",
+        feature: "Known as the Red Planet due to iron oxide.",
+      },
+    ]);
+    
+    const addFact = (newFact) => {
+      const updatedFacts = [...facts, newFact];
+      setFacts(updatedFacts);
+      mockApi.saveFacts(updatedFacts);
+    };
+  
+    const deleteFact = (index) => {
+      const updatedFacts = facts.filter((_, i) => i !== index);
+      setFacts(updatedFacts);
+      mockApi.saveFacts(updatedFacts);
+    };
+  
+    const filteredFacts = facts.filter((fact) =>
+      fact.title.toLowerCase()
+    );
+  
+    return (
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <div className="facts">
+                  {filteredFacts.map((fact, index) => (
+                    <SpaceFactCard
+                      key={index}
+                      {...fact}
+                      onDelete={() => deleteFact(index)}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          }
-        />
-        <Route path="/add-fact" element={<AddFactForm addFact={addFact} />} />
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
+            }
+          />
+          <Route path="/add-fact" element={<AddFactForm addFact={addFact} />} />
+          <Route path="/planets" element={<PlanetList planets={planets} />} />
+        </Routes>
+      </Router>
+    );
+  };
+  
+  export default App;
+  
