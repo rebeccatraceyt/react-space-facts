@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import AddFactForm from "./components/AddFactForm";
 import mockApi from "./api/mockApi";
 import PlanetList from "./components/PlanetList";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   const [facts, setFacts] = useState([
@@ -39,48 +40,50 @@ const App = () => {
       },
     ]);
     
-    const addFact = (newFact) => {
-      const updatedFacts = [...facts, newFact];
-      setFacts(updatedFacts);
-      mockApi.saveFacts(updatedFacts);
-    };
-  
-    const deleteFact = (index) => {
-      const updatedFacts = facts.filter((_, i) => i !== index);
-      setFacts(updatedFacts);
-      mockApi.saveFacts(updatedFacts);
-    };
-  
-    const filteredFacts = facts.filter((fact) =>
-      fact.title.toLowerCase()
-    );
-  
-    return (
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                <div className="facts">
-                  {filteredFacts.map((fact, index) => (
-                    <SpaceFactCard
-                      key={index}
-                      {...fact}
-                      onDelete={() => deleteFact(index)}
-                    />
-                  ))}
-                </div>
-              </div>
-            }
-          />
-          <Route path="/add-fact" element={<AddFactForm addFact={addFact} />} />
-          <Route path="/planets" element={<PlanetList planets={planets} />} />
-        </Routes>
-      </Router>
-    );
+    const [searchQuery, setSearchQuery] = useState('');
+
+  const addFact = (newFact) => {
+    const updatedFacts = [...facts, newFact];
+    setFacts(updatedFacts);
+    mockApi.saveFacts(updatedFacts);
   };
-  
-  export default App;
-  
+
+  const deleteFact = (index) => {
+    const updatedFacts = facts.filter((_, i) => i !== index);
+    setFacts(updatedFacts);
+    mockApi.saveFacts(updatedFacts);
+  };
+
+  const filteredFacts = facts.filter(fact =>
+    fact.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              <div className="facts">
+                {filteredFacts.map((fact, index) => (
+                  <SpaceFactCard
+                    key={index}
+                    {...fact}
+                    onDelete={() => deleteFact(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          }
+        />
+        <Route path="/add-fact" element={<AddFactForm addFact={addFact} />} />
+        <Route path="/planets" element={<PlanetList planets={planets} />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
