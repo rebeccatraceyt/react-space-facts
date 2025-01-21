@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+![React Logo](src/logo.svg)
+# React App: Space Facts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Introduction:
+This project was created to improve my understanding of key React concepts by creating a simple react app. The app displays a list of space fact cards, with a list of planets.
 
-In the project directory, you can run:
+***
 
-### `npm start`
+## Key Concepts Learned:
+### What is JSX?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files.
+- JSX makes it easy to define UI components.
+- Example:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+const Greeting = () => <h1>Hello, Space!</h1>;
+```
 
-### `npm test`
+### What is React State?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Special object used to manage data that changes over time in a React component.
+- State updates trigger re-renders, making it a key feature for interactive UIs.
 
-### `npm run build`
+### Props in React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Short for properties
+- Used to pass data from a parent component to a child component.
+- Example:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+const Planet = ({ name }) => <p>{name}</p>;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to Display List Items in React
 
-### `npm run eject`
+- You can use the map method to render lists dynamically.
+- Example:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+const planets = ['Earth', 'Mars', 'Venus'];
+return planets.map(planet => <li key={planet}>{planet}</li>);
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### React Event Handlers
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- React uses camelCase for event handler names, such as onClick.
+- Example:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+<button onClick={() => alert('Button clicked!')}>Click Me</button>
+```
 
-## Learn More
+### React Hooks
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Hooks let you use state and other React features in functional components.
+- The most common hooks are:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - `useState`: For managing state.
+    - `useEffect`: For side effects like fetching data or setting up subscriptions.
 
-### Code Splitting
+***
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Overview:
+- [ ] A list of space fact cards, where each card has a title, image, and content.
 
-### Analyzing the Bundle Size
+- [ ] A list of planets displayed below the cards.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [ ] Functionality to add new space fact cards dynamically.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [ ] A search feature to filter space facts by title.
