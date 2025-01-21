@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SpaceFactCard from "./components/SpaceFactCard";
 import NavBar from "./components/NavBar";
 import AddFactForm from "./components/AddFactForm";
+import mockApi from "./api/mockApi";
 
 const App = () => {
   const [facts, setFacts] = useState([
@@ -17,11 +18,13 @@ const App = () => {
   const addFact = (newFact) => {
     const updatedFacts = [...facts, newFact];
     setFacts(updatedFacts);
+    mockApi.saveFacts(updatedFacts);
   };
 
   const deleteFact = (index) => {
     const updatedFacts = facts.filter((_, i) => i !== index);
     setFacts(updatedFacts);
+    mockApi.saveFacts(updatedFacts);
   };
 
   const filteredFacts = facts.filter((fact) => fact.title.toLowerCase());
