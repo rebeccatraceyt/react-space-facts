@@ -3,6 +3,17 @@ body {
   margin: 20px;
 }
 
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: blue;
+}
+
 .card {
   border: 1px solid #ccc;
   padding: 10px;
@@ -15,7 +26,8 @@ body {
   flex-wrap: wrap;
 }
 
-input, textarea, button {
-  margin: 5px 0;
-  display: block;
+.planet-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
