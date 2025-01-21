@@ -69,4 +69,10 @@ return planets.map(planet => <li key={planet}>{planet}</li>);
 
 - [ ] Functionality to add new space fact cards dynamically.
 
-- [ ] A search feature to filter space facts by title.
+- [ ] CRUD operations for managing space fact cards.
+
+- [ ] Save facts to a JSON file using a simple mock API.
+
+- [ ] Navigation between facts, the fact form, and the planet list.
+
+- [ ] The planet list includes cards with a title, image, and a defining feature for each planet.
